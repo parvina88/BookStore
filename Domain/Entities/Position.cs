@@ -1,9 +1,9 @@
 ﻿namespace Domain.Entities
 {
-    public class Genre : BaseEntity
+    public class Position : BaseEntity
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public virtual ICollection<Book> Books { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 }
