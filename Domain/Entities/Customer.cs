@@ -3,7 +3,6 @@
     public class Customer : Person
     {
         public string Email { get; set; }
-        public BankAccount Account { get; set; }
-        public Guid AccountId { get; set; }
+        public virtual ICollection<BankAccount> Accounts { get; set; }
     }
 }
