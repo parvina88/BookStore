@@ -1,10 +1,11 @@
-﻿using Domain.Interfaces;
+﻿using Domain.Entities;
+using Domain.Interfaces;
 
 namespace Infrastructure.Repositories
 {
-    public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
+    public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : BaseEntity
     {
-        private 
+        
         public Task<IEnumerable<TEntity>> GetAllAsync()
         {
             throw new NotImplementedException();

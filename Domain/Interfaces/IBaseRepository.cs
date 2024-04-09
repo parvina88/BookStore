@@ -1,6 +1,8 @@
-﻿namespace Domain.Interfaces
+﻿using Domain.Entities;
+
+namespace Domain.Interfaces
 {
-    public interface IBaseRepository<TEntity> where TEntity: class
+    public interface IBaseRepository<TEntity> where TEntity: BaseEntity
     {
         Task<TEntity> GetAsync(Guid id);
         Task<IEnumerable<TEntity>> GetAllAsync();
