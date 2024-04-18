@@ -14,15 +14,15 @@ namespace Application.Services
 
         public async Task<bool> DeleteAsync(Guid id)
         {
-            var book = GetAsync(id);
+            Book book = await GetAsync(id);
 
-            if (book is not null)
+            if (book == null)
             {
-                await _bookRepository.DeleteAsync(id);
-                return true;
+                return false;
             }
 
-            return false;
+            await _bookRepository.DeleteAsync(book.Id);
+            return true;
         }
 
         public async Task<IEnumerable<Book>> GetAllAsync()
