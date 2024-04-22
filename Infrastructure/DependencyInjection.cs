@@ -13,6 +13,7 @@ namespace Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 var connectionString = configuration.GetConnectionString("DefaultConnection");

@@ -23,5 +23,6 @@ namespace Infrastructure.Data.Configurations
             builder.HasOne(e => e.Position)
                 .WithMany(p => p.Employees)
                 .HasForeignKey(e => e.PositionId);
+        }
     }
 }
