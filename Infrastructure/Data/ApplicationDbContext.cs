@@ -1,6 +1,7 @@
 ﻿using Application.Interfaces;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace Infrastructure.Data
 {
@@ -12,6 +13,13 @@ namespace Infrastructure.Data
         public DbSet<Customer> Customers { get; set; } = null!;
         public DbSet<Employee> Employees { get; set; } = null!;
         public DbSet<Position> Positions { get; set; } = null!;
-        public DbSet<BankAccount> Accounts { get; set; } = null!;    
+        public DbSet<BankAccount> Accounts { get; set; } = null!;
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
