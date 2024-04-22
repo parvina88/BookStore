@@ -7,9 +7,9 @@ namespace Infrastructure.Repositories
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : BaseEntity
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        protected BaseRepository(ApplicationDbContext context)
+        public BaseRepository(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -34,21 +34,21 @@ namespace Infrastructure.Repositories
 
         public async Task<bool> UpdateAsync(TEntity entity)
         {
-           _context.Update(entity);
-           return await _context.SaveChangesAsync() > 0;
-
-       
-        }
-        public async Task<bool> DeleteAsync(Guid id)
-        {
-            var entityToUpdate = GetAsync(id);
-            
-            if (entityToUpdate != null)
-            {
-                _context.Remove(entityToUpdate);
-            }
-
+            _context.Update(entity);
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public async Task<bool> DeleteAsync(Guid id)
+        {
+            var entityToDelete = await GetAsync(id);
+
+            if (entityToDelete != null)
+            {
+                _context.Remove(entityToDelete);
+                return await _context.SaveChangesAsync() > 0;
+            }
+
+            return false;
+            }
     }
 }
