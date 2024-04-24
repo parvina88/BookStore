@@ -2,7 +2,7 @@
 
 namespace Contract.Requests.BookRequest
 {
-    public record CreateBookRequest  //DTO
+    public record CreateBookRequest  //DTO  immutable
     {
         public string Name { get; set; }
         public string Description { get; set; }

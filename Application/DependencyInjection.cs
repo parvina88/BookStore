@@ -1,6 +1,7 @@
 ﻿using Application.Services;
 using Domain.Entities;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace Application
 {
@@ -8,9 +9,11 @@ namespace Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddScoped<IBaseService<Book>, BookService>();
+            services.AddScoped<IBaseService<Book>, BookService>(); 
+            services.AddScoped<IBaseService<Author>, AuthorService>();
 
-            //services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             return services;
         }
     }
